@@ -16,39 +16,47 @@ const port = process.env.PORT;
 
 app.use(express.json());
 
-app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://unique-crumble-063c6d.netlify.app"
-  );
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", "true");
+// app.use((req, res, next) => {
+//   res.setHeader(
+//     "Access-Control-Allow-Origin",
+//     "https://unique-crumble-063c6d.netlify.app"
+//   );
+//   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+//   res.setHeader(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+//   );
+//   res.setHeader("Access-Control-Allow-Credentials", "true");
 
-  // Handle preflight requests
-  if (req.method === "OPTIONS") {
-    res.status(200).end();
-    return;
-  }
+//   // Handle preflight requests
+//   if (req.method === "OPTIONS") {
+//     res.status(200).end();
+//     return;
+//   }
 
-  next();
-});
+//   next();
+// });
+
+// app.use(
+//   cors({
+//     origin: 'https://unique-crumble-063c6d.netlify.app',
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true,
+//     allowedHeaders: [
+//       "Origin",
+//       "X-Requested-With",
+//       "Content-Type",
+//       "Accept",
+//       "Authorization",
+//     ],
+//   })
+// );
 
 app.use(
   cors({
-    origin: 'https://unique-crumble-063c6d.netlify.app',
+    origin: "*", // Replace with your frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-    allowedHeaders: [
-      "Origin",
-      "X-Requested-With",
-      "Content-Type",
-      "Accept",
-      "Authorization",
-    ],
+    credentials: true, // Allow cookies and authentication headers
   })
 );
 
