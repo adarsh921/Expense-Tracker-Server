@@ -17,7 +17,10 @@ const port = process.env.PORT;
 app.use(express.json());
 app.use(
   cors({
-    origin: "*", // Allow your frontend
+    origin: [
+      "http://localhost:5173",
+      "https://unique-crumble-063c6d.netlify.app/",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
