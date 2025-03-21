@@ -17,7 +17,7 @@ const port = process.env.PORT;
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5173", // Your Vite frontend URL
+    origin: "https://unique-crumble-063c6d.netlify.app/", // Your Vite frontend URL
     credentials: true,
   })
 );
