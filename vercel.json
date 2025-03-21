@@ -1,7 +1,20 @@
 {
-  "build": {
-    "env": {
-      "NODE_ENV": "production"
+  "version": 2,
+  "builds": [
+    {
+      "src": "build/index.js",
+      "use": "@vercel/node"
     }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "build/index.js"
+    }
+  ],
+  "buildCommand": "npm run build",
+  "outputDirectory": "build",
+  "env": {
+    "NODE_ENV": "production"
   }
 }
