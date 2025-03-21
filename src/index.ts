@@ -7,10 +7,10 @@ import cors from "cors";
 dotenv.config(); //loads the envvironment variables from the .env file
 
 const app = express();
-if (!process.env.MONGO_URI) {
+if (!process.env.mongoURL) {
   throw new Error("mongoURL is not defined in enviorment variables");
 }
-const MONGO_URI: string = process.env.MONGO_URI;
+const mongoURL: string = process.env.mongoURL;
 
 const port = process.env.PORT;
 
@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
 });
 
 mongoose
-  .connect(MONGO_URI)
+  .connect(mongoURL)
   .then(() => {
     console.log("Connected to MONGO!");
   })
