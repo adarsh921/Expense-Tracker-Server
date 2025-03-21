@@ -15,14 +15,40 @@ const mongoURL: string = process.env.mongoURL;
 const port = process.env.PORT;
 
 app.use(express.json());
+
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://unique-crumble-063c6d.netlify.app"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+
+  // Handle preflight requests
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
+  }
+
+  next();
+});
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://unique-crumble-063c6d.netlify.app/",
-    ],
+    origin: 'https://unique-crumble-063c6d.netlify.app',
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
+    allowedHeaders: [
+      "Origin",
+      "X-Requested-With",
+      "Content-Type",
+      "Accept",
+      "Authorization",
+    ],
   })
 );
 
