@@ -12,7 +12,7 @@ const mongoURL = process.env.mongoURL;
 const port = process.env.PORT;
 app.use(express.json());
 app.use(cors({
-    origin: "http://localhost:5173", // Your Vite frontend URL
+    origin: "*", // Your Vite frontend URL
     credentials: true,
 }));
 app.use("/financial-records", financialRecordRouter);
